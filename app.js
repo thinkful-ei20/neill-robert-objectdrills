@@ -8,5 +8,17 @@ const loaf = {
   }
 };
 
-console.log(`loaf properties are ${loaf.flour} and ${loaf.water}`);
-console.log(loaf.hydration());
+// console.log(`loaf properties are ${loaf.flour} and ${loaf.water}`);
+// console.log(loaf.hydration());
+
+const myObj = {
+  foo: 'fizz',
+  bar: 'foobar',
+  fum: 'fee fye',
+  quux: 12,
+  spam: false,
+};
+
+for (let p in myObj){
+  console.log(myObj[p]);
+}
