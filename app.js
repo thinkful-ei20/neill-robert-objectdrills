@@ -146,5 +146,16 @@ const HEROES = [
 ];
 
 function findOne(arr, query) {
-  
+  let queryItems = Object.keys(query);
+  let holder = [];
+  for (let i = 0; i < queryItems.length; i++) {
+    holder.push(arr.find(x => {
+      return x[queryItems[i]] === query[queryItems[i]];
+    }));
+  }
+  if (holder.every(item => item.id === holder[0].id)) {
+    return holder[0];
+  } else return null;
 }
+
+console.log(findOne(HEROES, { id: 5, squad: 'Justice League' }));
