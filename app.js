@@ -32,3 +32,12 @@ const hobbitStuff = {
 
 // console.log(hobbitStuff.meals[3]);
 
+//Drill 4
+const characters = [
+  {name: 'Gandolf', jobTitle: 'Wizard'}, 
+  {name: 'Legolas', jobTitle: 'Archer'}, 
+  {name: 'Sam', jobTitle: 'Companion'}, 
+  {name: 'Sauron', jobTitle: 'Big eye'},
+]
+
+characters.forEach(x => console.log(`I am ${x.name} and I am a ${x.jobTitle}`));
