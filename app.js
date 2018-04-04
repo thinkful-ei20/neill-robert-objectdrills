@@ -146,16 +146,27 @@ const HEROES = [
 ];
 
 function findOne(arr, query) {
-  let queryItems = Object.keys(query);
-  let holder = [];
-  for (let i = 0; i < queryItems.length; i++) {
-    holder.push(arr.find(x => {
-      return x[queryItems[i]] === query[queryItems[i]];
-    }));
-  }
-  if (holder.every(item => item.id === holder[0].id)) {
-    return holder[0];
-  } else return null;
+  if (Object.keys(query).length === 0) return null;
+  let holder = arr.find(x => {
+    for (let key in query){
+      if (!x.hasOwnProperty(key) || !(x[key] === query[key])) {
+        return false;
+      }
+    }
+    return true;
+  });
+  return holder ? holder : null;
 }
 
+console.log(findOne(HEROES, { id: 1 }));
+
+console.log(findOne(HEROES, { id: 10 }));
+
+console.log(findOne(HEROES, { id: 2, name: 'Aquaman' }));
+
 console.log(findOne(HEROES, { id: 5, squad: 'Justice League' }));
+
+console.log(findOne(HEROES, { squad: 'Justice League' }));
+
+console.log(findOne(HEROES, {}));
+
