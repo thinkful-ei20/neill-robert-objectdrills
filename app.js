@@ -135,38 +135,75 @@
 // console.log(strongCharacters);
 
 // 8. BONUS: A Database Search
-const HEROES = [
-  { id: 1, name: 'Captain America', squad: 'Avengers' },
-  { id: 2, name: 'Iron Man', squad: 'Avengers' },
-  { id: 3, name: 'Spiderman', squad: 'Avengers' },
-  { id: 4, name: 'Superman', squad: 'Justice League' },
-  { id: 5, name: 'Wonder Woman', squad: 'Justice League' },
-  { id: 6, name: 'Aquaman', squad: 'Justice League' },
-  { id: 7, name: 'Hulk', squad: 'Avengers' },
-];
+// const HEROES = [
+//   { id: 1, name: 'Captain America', squad: 'Avengers' },
+//   { id: 2, name: 'Iron Man', squad: 'Avengers' },
+//   { id: 3, name: 'Spiderman', squad: 'Avengers' },
+//   { id: 4, name: 'Superman', squad: 'Justice League' },
+//   { id: 5, name: 'Wonder Woman', squad: 'Justice League' },
+//   { id: 6, name: 'Aquaman', squad: 'Justice League' },
+//   { id: 7, name: 'Hulk', squad: 'Avengers' },
+// ];
 
-function findOne(arr, query) {
-  if (Object.keys(query).length === 0) return null;
-  let holder = arr.find(x => {
-    for (let key in query){
-      if (!x.hasOwnProperty(key) || !(x[key] === query[key])) {
-        return false;
+// function findOne(arr, query) {
+//   if (Object.keys(query).length === 0) return null;
+//   let holder = arr.find(x => {
+//     for (let key in query){
+//       if (!x.hasOwnProperty(key) || !(x[key] === query[key])) {
+//         return false;
+//       }
+//     }
+//     return true;
+//   });
+//   return holder ? holder : null;
+// }
+
+// console.log(findOne(HEROES, { id: 1 }));
+
+// console.log(findOne(HEROES, { id: 10 }));
+
+// console.log(findOne(HEROES, { id: 2, name: 'Aquaman' }));
+
+// console.log(findOne(HEROES, { id: 5, squad: 'Justice League' }));
+
+// console.log(findOne(HEROES, { squad: 'Justice League' }));
+
+// console.log(findOne(HEROES, {}));
+
+const Database = {
+  store: {
+    heroes: [
+      { id: 1, name: 'Captain America', squad: 'Avengers' },
+      { id: 2, name: 'Iron Man', squad: 'Avengers' },
+      { id: 3, name: 'Spiderman', squad: 'Avengers' },
+      { id: 4, name: 'Superman', squad: 'Justice League' },
+      { id: 5, name: 'Wonder Woman', squad: 'Justice League' },
+      { id: 6, name: 'Aquaman', squad: 'Justice League' },
+      { id: 7, name: 'Hulk', squad: 'Avengers' },
+    ]
+  },
+  findOne: function(query) {
+    if (Object.keys(query).length === 0) return null;
+    let holder = this.store.heroes.find(x => {
+      for (let key in query){
+        if (!x.hasOwnProperty(key) || !(x[key] === query[key])) {
+          return false;
+        }
       }
-    }
-    return true;
-  });
-  return holder ? holder : null;
-}
+      return true;
+    });
+    return holder ? holder : null;
+  }
+};
 
-console.log(findOne(HEROES, { id: 1 }));
+console.log(Database.findOne({ id: 1 }));
 
-console.log(findOne(HEROES, { id: 10 }));
+console.log(Database.findOne({ id: 10 }));
 
-console.log(findOne(HEROES, { id: 2, name: 'Aquaman' }));
+console.log(Database.findOne({ id: 2, name: 'Aquaman' }));
 
-console.log(findOne(HEROES, { id: 5, squad: 'Justice League' }));
+console.log(Database.findOne({ id: 5, squad: 'Justice League' }));
 
-console.log(findOne(HEROES, { squad: 'Justice League' }));
+console.log(Database.findOne({ squad: 'Justice League' }));
 
-console.log(findOne(HEROES, {}));
-
+console.log(Database.findOne({}));
